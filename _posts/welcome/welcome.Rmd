@@ -1,14 +1,14 @@
 ---
 title: "Welcome to Tensor Tenison"
 description: |
-  Welcome to our new blog, Tensor Tenison. We hope you enjoy 
-  reading what we have to say!
+  Welcome to my new blog, Tensor Tenison. I hope you enjoy reading about and viewing my work.
+  In my line of work, I'm constantly working on a multitude of different projects.
+  This blog is my attempt to tie everything together in a digestistable format to serve
+  as a portfolio of my work. 
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
-date: 12-11-2021
+  - name: Ethan Tenison 
+    url: https://twitter.com/ethantenison 
+date: 1-2-2022
 output:
   distill::distill_article:
     self_contained: false

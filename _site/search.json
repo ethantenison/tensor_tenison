@@ -6,14 +6,14 @@
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-12-11T19:26:11-06:00"
+      "last_modified": "2022-01-02T12:52:11-06:00"
     },
     {
       "path": "index.html",
       "title": "Tensor Tenison",
       "author": [],
       "contents": "\r\nHello World!\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-12-11T19:26:12-06:00"
+      "last_modified": "2022-01-02T12:52:12-06:00"
     }
   ],
   "collections": ["posts/posts.json"]
