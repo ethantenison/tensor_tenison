@@ -1,9 +1,14 @@
 ---
-title: "About this blog"
+title: "About Ethan"
 description: |
-  Some additional details about the blog
+  Ethan Tenison is a data scientist and project manager at the RGK Center for
+  Philanthropy and Community Service located within the LBJ School of Public Affairs
+  at the University of Texas at Austin
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+
+

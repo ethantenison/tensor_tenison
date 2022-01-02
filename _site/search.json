@@ -2,18 +2,18 @@
   "articles": [
     {
       "path": "about.html",
-      "title": "About this blog",
-      "description": "Some additional details about the blog",
+      "title": "About Ethan",
+      "description": "Ethan Tenison is a data scientist and project manager at the RGK Center for\nPhilanthropy and Community Service located within the LBJ School of Public Affairs\nat the University of Texas at Austin",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-02T12:52:11-06:00"
+      "last_modified": "2022-01-02T13:17:31-06:00"
     },
     {
       "path": "index.html",
       "title": "Tensor Tenison",
       "author": [],
-      "contents": "\r\nHello World!\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-02T12:52:12-06:00"
+      "contents": "\r\nWork in Progress 🔨📈👨💻\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-01-02T13:17:32-06:00"
     }
   ],
   "collections": ["posts/posts.json"]
