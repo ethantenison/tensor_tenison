@@ -2,18 +2,18 @@
   {
     "path": "posts/welcome/",
     "title": "Welcome to Tensor Tenison",
-    "description": "Welcome to our new blog, Tensor Tenison. We hope you enjoy \nreading what we have to say!",
+    "description": "Welcome to my new blog, Tensor Tenison. I hope you enjoy reading about and viewing my work.\nIn my line of work, I'm constantly working on a multitude of different projects.\nThis blog is my attempt to tie everything together in a digestistable format to serve\nas a portfolio of my work.",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "Ethan Tenison",
+        "url": "https://twitter.com/ethantenison"
       }
     ],
-    "date": "2021-12-11",
+    "date": "2022-01-02",
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-12-11T19:19:34-06:00",
+    "last_modified": "2022-01-04T12:58:14-06:00",
     "input_file": {}
   }
 ]
