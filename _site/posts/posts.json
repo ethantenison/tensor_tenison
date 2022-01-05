@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-01-04-transit-costs-project/",
+    "title": "Transit Costs Project",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Ethan Tenison",
+        "url": "https://twitter.com/ethantenison"
+      }
+    ],
+    "date": "2022-01-04",
+    "categories": [],
+    "contents": "\r\nTransit Costs Project\r\nThis data comes from the Transit Costs Project via #tidytuesday on Twitter.\r\n\r\nWhy do transit-infrastructure projects in New York cost 20 times more on a per kilometer basis than in Seoul? We investigate this question across hundreds of transit projects from around the world. We have created a database that spans more than 50 countries and totals more than 11,000 km of urban rail built since the late 1990s. We will also examine this question in greater detail by carrying out six in-depth case studies that take a closer look at unique considerations and variables that aren’t easily quantified, like project management, governance, and site conditions.\r\n\r\n\r\nThe goal of this work is to figure out how to deliver more high-capacity transit projects for a fraction of the cost in countries like the United States. Additionally, we hope that our site will be a useful resource for elected officials, planners, researchers, journalists, advocates, and others interested in contextualizing transit-infrastructure costs and fighting for better projects.\r\n\r\nOne of the reason why I chose it was because the city I live in, Austin, approved a massive expansion of its rail transit-system. From the beginning of the planning process (a different version was defeat once before), it was highly controversial partly because of the cost. Given the congestion on Austin’s roads already, it doesn’t seem like the city has any other viable option to alleviate the problem.\r\n\r\n\r\nlibrary(tidytuesdayR)\r\nlibrary(tidyverse\r\n        )\r\n\r\ntuesdata <- tidytuesdayR::tt_load(2021, week = 2)\r\n\r\n\r\n\r\n    Downloading file 1 of 1: `transit_cost.csv`\r\n\r\ntransit_cost <- tuesdata$transit_cost\r\nglimpse(transit_cost)\r\n\r\n\r\nRows: 544\r\nColumns: 20\r\n$ e                <dbl> 7136, 7137, 7138, 7139, 7144, 7145, 7146, 7~\r\n$ country          <chr> \"CA\", \"CA\", \"CA\", \"CA\", \"CA\", \"NL\", \"CA\", \"~\r\n$ city             <chr> \"Vancouver\", \"Toronto\", \"Toronto\", \"Toronto~\r\n$ line             <chr> \"Broadway\", \"Vaughan\", \"Scarborough\", \"Onta~\r\n$ start_year       <chr> \"2020\", \"2009\", \"2020\", \"2020\", \"2020\", \"20~\r\n$ end_year         <chr> \"2025\", \"2017\", \"2030\", \"2030\", \"2030\", \"20~\r\n$ rr               <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~\r\n$ length           <dbl> 5.7, 8.6, 7.8, 15.5, 7.4, 9.7, 5.8, 5.1, 4.~\r\n$ tunnel_per       <chr> \"87.72%\", \"100.00%\", \"100.00%\", \"57.00%\", \"~\r\n$ tunnel           <dbl> 5.0, 8.6, 7.8, 8.8, 7.4, 7.1, 5.8, 5.1, 4.2~\r\n$ stations         <dbl> 6, 6, 3, 15, 6, 8, 5, 2, 2, 2, 3, 3, 4, 7, ~\r\n$ source1          <chr> \"Plan\", \"Media\", \"Wiki\", \"Plan\", \"Plan\", \"W~\r\n$ cost             <dbl> 2830, 3200, 5500, 8573, 5600, 3100, 4500, 1~\r\n$ currency         <chr> \"CAD\", \"CAD\", \"CAD\", \"CAD\", \"CAD\", \"EUR\", \"~\r\n$ year             <dbl> 2018, 2013, 2018, 2019, 2020, 2009, 2018, 2~\r\n$ ppp_rate         <dbl> 0.840, 0.810, 0.840, 0.840, 0.840, 1.300, 0~\r\n$ real_cost        <chr> \"2377.2\", \"2592\", \"4620\", \"7201.32\", \"4704\"~\r\n$ cost_km_millions <dbl> 417.05263, 301.39535, 592.30769, 464.60129,~\r\n$ source2          <chr> \"Media\", \"Media\", \"Media\", \"Plan\", \"Media\",~\r\n$ reference        <chr> \"https://www.translink.ca/Plans-and-Project~\r\n\r\nAverage cost per country\r\n\r\n\r\n\r\nTotal Lines per country\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "posts/2022-01-04-transit-costs-project/transit-costs-project_files/figure-html5/total_cost-1.png",
+    "last_modified": "2022-01-04T23:03:52-06:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to Tensor Tenison",
     "description": "Welcome to my new blog, Tensor Tenison. I hope you enjoy reading about and viewing my work.\nIn my line of work, I'm constantly working on a multitude of different projects.\nThis blog is my attempt to tie everything together in a digestistable format to serve\nas a portfolio of my work.",
