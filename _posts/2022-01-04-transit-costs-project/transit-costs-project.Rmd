@@ -169,4 +169,42 @@ ggplot(total_lines, aes(x = reorder(country, -n), y = n, fill = us)) +
 ```
 
 
+# What is causing rail to be so expensive in the US? 
+
+Let's take a deeper look how the different variables are correlated with each other. 
+
+```{r correlation}
+
+cor <- transit_cost |>
+  filter(!is.na(end_year)) |> # this removes 71
+  mutate(
+    end_year = as.numeric(end_year),
+    start_year = as.numeric(start_year),
+    total_years = end_year - start_year
+  ) |>
+  select(
+    -c(
+      1:4,
+      source1,
+      source2,
+      reference,
+      tunnel,
+      tunnel_per,
+      cost,
+      currency,
+      ppp_rate,
+      real_cost, 
+      start_year,
+      end_year
+    )
+  )
+
+#cor <- na.omit(cor)
+
+library(corrplot)
+Correlation <- cor(cor, use="pairwise.complete.obs")
+corrplot(Correlation, order = 'hclust', addrect = 2)
+
+```
+
 
