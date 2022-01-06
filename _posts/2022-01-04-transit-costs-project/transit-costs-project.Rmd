@@ -41,8 +41,11 @@ glimpse(transit_cost)
 
 ```
 
+The data set contains twenty variables including start and end date, track length, number of stations, whether it contains a tunnel, and cost recalculated using different measures. 
 
 # Average cost per country
+
+As mentioned below, the United States is by far the most expensive place to built transit systems. Hopefully we'll be able to discover exactly why that is, but I have a feeling we're missing some crucial variables. 
 
 ```{r total_cost}
 
@@ -115,6 +118,8 @@ ggplot(total, aes(x = reorder(country, -average_cost), y = average_cost, fill = 
 
 # Total Lines per country 
 
+Although I some transit lines are not accounted for in this data set, namely Austin's red line, it is indisputable that China is the global leader in rail construction over the past 30 years. This partially because China started from an extremely low level of infrastructure and because of Chinese government intervention. Given that the Chinese construction and real estate industries are bordering on insolvency because of over investment, the same may be true for transit. That question we certainly can't answer from this data set though!  
+
 ```{r total_lines}
 
 total_lines <- transit_cost |> 
@@ -133,7 +138,6 @@ ggplot(total_lines, aes(x = reorder(country, -n), y = n, fill = us)) +
   labs( x = "Countries",
         y = "Rail lines built",
         title = "Total rail lines built per country",
-        subtitle = "(1990 - )",
         caption = "Source: Transit Costs Project") +
   theme(
     axis.text.x = element_blank(),
@@ -180,7 +184,9 @@ cor <- transit_cost |>
   mutate(
     end_year = as.numeric(end_year),
     start_year = as.numeric(start_year),
-    total_years = end_year - start_year
+    real_cost = as.numeric(real_cost),
+    total_years = end_year - start_year,
+    non_tunnel = length - tunnel
   ) |>
   select(
     -c(
@@ -188,12 +194,12 @@ cor <- transit_cost |>
       source1,
       source2,
       reference,
-      tunnel,
+      length,
       tunnel_per,
       cost,
       currency,
       ppp_rate,
-      real_cost, 
+      cost_km_millions, 
       start_year,
       end_year
     )
@@ -207,4 +213,26 @@ corrplot(Correlation, order = 'hclust', addrect = 2)
 
 ```
 
+
+# Linear Regression 
+
+Unfortunately, with the current variables available, we can not make accurate predictions on cost per km, but with real cost as the dependent variable we get some good explanatory power. 
+
+```{r linear_regression}
+library(tidymodels)
+
+# Specifying the model 
+lm_spec <- linear_reg() %>%
+  set_mode("regression") %>%
+  set_engine("lm")
+
+lm_fit <- lm_spec %>%
+  fit(real_cost ~ ., data = cor)
+
+lm_fit %>% 
+  pluck("fit") %>%
+  summary()
+
+
+```
 

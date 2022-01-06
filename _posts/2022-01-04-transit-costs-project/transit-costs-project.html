@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["transit-costs-project_files/anchor-4.2.2/anchor.min.js","transit-costs-project_files/bowser-1.9.3/bowser.min.js","transit-costs-project_files/distill-2.2.21/template.v2.js","transit-costs-project_files/figure-html5/total_cost-1.png","transit-costs-project_files/figure-html5/total_lines-1.png","transit-costs-project_files/header-attrs-2.11/header-attrs.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.map","transit-costs-project_files/popper-2.6.0/popper.min.js","transit-costs-project_files/tippy-6.2.7/tippy-bundle.umd.min.js","transit-costs-project_files/tippy-6.2.7/tippy-light-border.css","transit-costs-project_files/tippy-6.2.7/tippy.css","transit-costs-project_files/tippy-6.2.7/tippy.umd.min.js","transit-costs-project_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["transit-costs-project_files/anchor-4.2.2/anchor.min.js","transit-costs-project_files/bowser-1.9.3/bowser.min.js","transit-costs-project_files/distill-2.2.21/template.v2.js","transit-costs-project_files/figure-html5/correlation-1.png","transit-costs-project_files/figure-html5/total_cost-1.png","transit-costs-project_files/figure-html5/total_lines-1.png","transit-costs-project_files/header-attrs-2.11/header-attrs.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.map","transit-costs-project_files/popper-2.6.0/popper.min.js","transit-costs-project_files/tippy-6.2.7/tippy-bundle.umd.min.js","transit-costs-project_files/tippy-6.2.7/tippy-light-border.css","transit-costs-project_files/tippy-6.2.7/tippy.css","transit-costs-project_files/tippy-6.2.7/tippy.umd.min.js","transit-costs-project_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1526,15 +1526,51 @@ $ cost_km_millions &lt;dbl&gt; 417.05263, 301.39535, 592.30769, 464.60129,~
 $ source2          &lt;chr&gt; &quot;Media&quot;, &quot;Media&quot;, &quot;Media&quot;, &quot;Plan&quot;, &quot;Media&quot;,~
 $ reference        &lt;chr&gt; &quot;https://www.translink.ca/Plans-and-Project~</code></pre>
 </div>
+<p>The data set contains twenty variables including start and end date, track length, number of stations, whether it contains a tunnel, and cost recalculated using different measures.</p>
 <h1 id="average-cost-per-country">Average cost per country</h1>
+<p>As mentioned below, the United States is by far the most expensive place to built transit systems. Hopefully we’ll be able to discover exactly why that is, but I have a feeling we’re missing some crucial variables.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="transit-costs-project_files/figure-html5/total_cost-1.png" width="624" /></p>
 </div>
 <h1 id="total-lines-per-country">Total Lines per country</h1>
+<p>Although I some transit lines are not accounted for in this data set, namely Austin’s red line, it is indisputable that China is the global leader in rail construction over the past 30 years. This partially because China started from an extremely low level of infrastructure and because of Chinese government intervention. Given that the Chinese construction and real estate industries are bordering on insolvency because of over investment, the same may be true for transit. That question we certainly can’t answer from this data set though!</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="transit-costs-project_files/figure-html5/total_lines-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="what-is-causing-rail-to-be-so-expensive-in-the-us">What is causing rail to be so expensive in the US?</h1>
+<p>Let’s take a deeper look how the different variables are correlated with each other.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="transit-costs-project_files/figure-html5/correlation-1.png" width="624" /></p>
+</div>
+<h1 id="linear-regression">Linear Regression</h1>
+<p>Unfortunately, with the current variables available, we can not make accurate predictions on cost per km, but with real cost as the dependent variable we get some good explanatory power.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>
+Call:
+stats::lm(formula = real_cost ~ ., data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9813.8 -1164.3  -302.1   590.8 17242.8 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -246142.84   44126.09  -5.578 4.30e-08 ***
+rr              592.04     526.69   1.124 0.261609    
+tunnel          182.25      12.17  14.971  &lt; 2e-16 ***
+stations         61.63      18.30   3.368 0.000825 ***
+year            121.90      21.90   5.566 4.58e-08 ***
+total_years     123.44      44.23   2.791 0.005486 ** 
+non_tunnel       97.47      13.98   6.972 1.18e-11 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 2684 on 431 degrees of freedom
+  (35 observations deleted due to missingness)
+Multiple R-squared:  0.6997,    Adjusted R-squared:  0.6956 
+F-statistic: 167.4 on 6 and 431 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
