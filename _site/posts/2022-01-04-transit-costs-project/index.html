@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["transit-costs-project_files/anchor-4.2.2/anchor.min.js","transit-costs-project_files/bowser-1.9.3/bowser.min.js","transit-costs-project_files/distill-2.2.21/template.v2.js","transit-costs-project_files/figure-html5/correlation-1.png","transit-costs-project_files/figure-html5/total_cost-1.png","transit-costs-project_files/figure-html5/total_lines-1.png","transit-costs-project_files/header-attrs-2.11/header-attrs.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.map","transit-costs-project_files/popper-2.6.0/popper.min.js","transit-costs-project_files/tippy-6.2.7/tippy-bundle.umd.min.js","transit-costs-project_files/tippy-6.2.7/tippy-light-border.css","transit-costs-project_files/tippy-6.2.7/tippy.css","transit-costs-project_files/tippy-6.2.7/tippy.umd.min.js","transit-costs-project_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["transit-costs-project_files/anchor-4.2.2/anchor.min.js","transit-costs-project_files/bowser-1.9.3/bowser.min.js","transit-costs-project_files/distill-2.2.21/template.v2.js","transit-costs-project_files/figure-html5/check accuracy-1.png","transit-costs-project_files/figure-html5/correlation-1.png","transit-costs-project_files/figure-html5/evaluation-1.png","transit-costs-project_files/figure-html5/rf-1.png","transit-costs-project_files/figure-html5/total_cost-1.png","transit-costs-project_files/figure-html5/total_lines-1.png","transit-costs-project_files/figure-html5/vip-1.png","transit-costs-project_files/header-attrs-2.11/header-attrs.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.map","transit-costs-project_files/popper-2.6.0/popper.min.js","transit-costs-project_files/tippy-6.2.7/tippy-bundle.umd.min.js","transit-costs-project_files/tippy-6.2.7/tippy-light-border.css","transit-costs-project_files/tippy-6.2.7/tippy.css","transit-costs-project_files/tippy-6.2.7/tippy.umd.min.js","transit-costs-project_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2197,22 +2197,22 @@ h1, h2, h3, h4, h5 {
 <p>The goal of this work is to figure out how to deliver more high-capacity transit projects for a fraction of the cost in countries like the United States. Additionally, we hope that our site will be a useful resource for elected officials, planners, researchers, journalists, advocates, and others interested in contextualizing transit-infrastructure costs and fighting for better projects.</p>
 </blockquote>
 <p>One of the reason why I chose it was because the city I live in, Austin, approved a massive expansion of its rail transit-system. From the beginning of the planning process (a different version was defeat once before), it was highly controversial partly because of the cost. Given the congestion on Austin’s roads already, it doesn’t seem like the city has any other viable option to alleviate the problem.</p>
+<h3 id="downloading-the-data">Downloading the data</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/thebioengineer/tidytuesdayR'>tidytuesdayR</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span>
-        <span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/thebioengineer/tidytuesdayR'>tidytuesdayR</a></span><span class='op'>)</span><span class='co'># tidytuesday data package </span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>   <span class='co'># compendium of data lifecycle packages</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/koalaverse/vip/'>vip</a></span><span class='op'>)</span>         <span class='co'># for visualizing variable importance</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>dotwhisker</span><span class='op'>)</span>  <span class='co'># for visualizing regression </span>
 
 <span class='va'>tuesdata</span> <span class='op'>&lt;-</span> <span class='fu'>tidytuesdayR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tidytuesdayR/man/tt_load.html'>tt_load</a></span><span class='op'>(</span><span class='fl'>2021</span>, week <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>
     Downloading file 1 of 1: `transit_cost.csv`</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>transit_cost</span> <span class='op'>&lt;-</span> <span class='va'>tuesdata</span><span class='op'>$</span><span class='va'>transit_cost</span>
-<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>transit_cost</span><span class='op'>)</span>
-</code></pre>
 </div>
+<h3 id="sneak-peak">Sneak Peak</h3>
+<div class="layout-chunk" data-layout="l-body">
 <pre><code>Rows: 544
 Columns: 20
 $ e                &lt;dbl&gt; 7136, 7137, 7138, 7139, 7144, 7145, 7146, 7~
@@ -2252,6 +2252,7 @@ $ reference        &lt;chr&gt; &quot;https://www.translink.ca/Plans-and-Project~
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="transit-costs-project_files/figure-html5/correlation-1.png" width="624" /></p>
 </div>
+<p>We can glean from the matrix that both the number of stations and tunnel length were positively correlated with the real cost of the project. We can also see that whether a track is built on an existing railroad is positively correlated with length in years of the project.</p>
 <h1 id="linear-regression">Linear Regression</h1>
 <p>Unfortunately, with the current variables available, we can not make accurate predictions on cost per km, but with real cost as the dependent variable we get some good explanatory power.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2280,7 +2281,79 @@ Residual standard error: 2684 on 431 degrees of freedom
 Multiple R-squared:  0.6997,    Adjusted R-squared:  0.6956 
 F-statistic: 167.4 on 6 and 431 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Virtually every variable, besides whether the project was built on a railroad, increased the project costs on average, which makes sense! That’s a no-brainer. The variables are significant, and our R^2 is close to 70%. Now let’s see if our model accurately predicts the real cost .</p>
+<h1 id="prediction">Prediction</h1>
+<h3 id="data-splitting">Data splitting</h3>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h3 id="training">Training</h3>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code># A tibble: 110 x 1
+   .pred
+   &lt;dbl&gt;
+ 1 1586.
+ 2 3068.
+ 3  777.
+ 4  359.
+ 5 1489.
+ 6 3136.
+ 7 1429.
+ 8  902.
+ 9 1333.
+10 1559.
+# ... with 100 more rows</code></pre>
+</div>
+<h3 id="evaluating">Evaluating</h3>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="transit-costs-project_files/figure-html5/evaluation-1.png" width="624" /></p>
+</div>
+<p>Based on the diagnostic tests, there seem to ve several points that are biasing our results. This affects the interpretability and predictive power of our model.</p>
+<h1 id="variable-importance">Variable Importance</h1>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="transit-costs-project_files/figure-html5/vip-1.png" width="624" /></p>
+</div>
+<p>The main take away from the variable importance plot is that the length of the track has a huge influence on the track (no brainer), and that tunnels have an even bigger impact (also a no brainer perhaps).</p>
+<h1 id="check-for-accuracy">Check for accuracy</h1>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code># A tibble: 1 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard       2673.</code></pre>
+<p><img src="transit-costs-project_files/figure-html5/check%20accuracy-1.png" width="624" /></p>
+</div>
+<p>Mirroring the diagnostic tests, the model is better when not considering the outliers. Let’s try a different model to improve accuracy.</p>
+<h3 id="random-forest">Random Forest</h3>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>Random Forest Model Specification (regression)
+
+Computational engine: ranger </code></pre>
+<pre><code>parsnip model object
+
+Fit time:  250ms 
+Ranger result
+
+Call:
+ ranger::ranger(x = maybe_data_frame(x), y = y, num.threads = 1,      verbose = FALSE, seed = sample.int(10^5, 1)) 
+
+Type:                             Regression 
+Number of trees:                  500 
+Sample size:                      328 
+Number of independent variables:  6 
+Mtry:                             2 
+Target node size:                 5 
+Variable importance mode:         none 
+Splitrule:                        variance 
+OOB prediction error (MSE):       10487881 
+R squared (OOB):                  0.5995448 </code></pre>
+<pre><code># A tibble: 1 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard       2649.</code></pre>
+<p><img src="transit-costs-project_files/figure-html5/rf-1.png" width="624" /></p>
+</div>
+<p>Based on the results, both of them are particularly good. Accordingly, our data set lacks certain variables that might impact the overal cost of a metro rail project.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

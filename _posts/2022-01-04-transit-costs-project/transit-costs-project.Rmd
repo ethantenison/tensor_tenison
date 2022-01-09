@@ -28,14 +28,21 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ```
 
+### Downloading the data
 ```{r data, echo = TRUE}
 
-library(tidytuesdayR)
-library(tidyverse
-        )
+library(tidytuesdayR)# tidytuesday data package 
+library(tidyverse)   # compendium of data lifecycle packages
+library(vip)         # for visualizing variable importance
+library(dotwhisker)  # for visualizing regression 
 
 tuesdata <- tidytuesdayR::tt_load(2021, week = 2)
 
+```
+
+### Sneak Peak 
+
+```{r take_a_look}
 transit_cost <- tuesdata$transit_cost
 glimpse(transit_cost)
 
@@ -212,7 +219,7 @@ Correlation <- cor(cor, use="pairwise.complete.obs")
 corrplot(Correlation, order = 'hclust', addrect = 2)
 
 ```
-
+We can glean from the matrix that both the number of stations and tunnel length were positively correlated with the real cost of the project. We can also see that whether a track is built on an existing railroad is positively correlated with length in years of the project. 
 
 # Linear Regression 
 
@@ -236,3 +243,118 @@ lm_fit %>%
 
 ```
 
+Virtually every variable, besides whether the project was built on a railroad, increased the project costs on average, which makes sense! That's a no-brainer. The variables are significant, and our R^2 is close to 70%. Now let's see if our model accurately predicts the real cost .
+
+# Prediction
+
+### Data splitting
+
+```{r splitting}
+
+set.seed(27)
+
+df <- na.omit(cor)
+
+data_split <- initial_split(df, prop = 3/4)
+
+train_data <- training(data_split)
+test_data  <- testing(data_split)
+
+```
+
+
+### Training
+
+```{r training}
+
+
+# Specifying the model 
+lm_spec <- linear_reg() %>%
+  set_mode("regression") %>%
+  set_engine("lm")
+
+#Fitting 
+lm_fit <- lm_spec %>%
+  fit(real_cost ~ ., data = train_data)
+
+#Predicting
+pred <- predict(lm_fit, new_data = test_data)
+pred
+
+```
+### Evaluating
+
+```{r evaluation}
+
+par(mfrow = c(2, 2)) # plot all 4 plots in one plot
+plot(lm_fit$fit,  # Select the fit object from the lm_fit list object 
+     pch = 16,    # optional parameters to make points blue
+     col = '#006EA1')
+
+```
+
+Based on the diagnostic tests, there seem to ve several points that are biasing our results. This affects the interpretability and predictive power of our model. 
+
+# Variable Importance
+
+```{r vip}
+vip(lm_fit)
+
+```
+ 
+The main take away from the variable importance plot is that the length of the track has a huge influence on the track (no brainer), and that tunnels have an even bigger impact (also a no brainer perhaps). 
+
+
+# Check for accuracy 
+
+```{r check accuracy}
+test_results <- predict(lm_fit, new_data = test_data) |>
+  bind_cols(test_data)
+
+
+print(rmse(test_results, truth = real_cost, estimate = .pred))
+ggplot(data = test_results,
+       mapping = aes(x = .pred, y = real_cost)) +
+  geom_point(color = '#006EA1') +
+  geom_abline(intercept = 0, slope = 1, color = 'orange') +
+  labs(title = 'Linear Regression Results - Test Set',
+       x = 'Predicted',
+       y = 'Real Cost')
+
+
+
+```
+
+Mirroring the diagnostic tests, the model is better when not considering the outliers. Let's try a different model to improve accuracy. 
+
+### Random Forest 
+
+```{r rf}
+rf_mod <- rand_forest(mode = "regression") |> 
+  set_engine("ranger") 
+  
+print(rf_mod)
+
+
+rf_fit <- 
+  rf_mod %>% 
+  fit(real_cost ~ ., data = train_data)
+
+print(rf_fit)
+
+
+test_results <- predict(rf_fit, new_data = test_data) |>
+  bind_cols(test_data)
+
+print(rmse(test_results, truth = real_cost, estimate = .pred))
+
+ggplot(data = test_results,
+       mapping = aes(x = .pred, y = real_cost)) +
+  geom_point(color = '#006EA1') +
+  geom_abline(intercept = 0, slope = 1, color = 'orange') +
+  labs(title = 'RF Regression Results - Test Set',
+       x = 'Predicted',
+       y = 'Real Cost')
+```
+
+Based on the results, both of them are particularly good. Accordingly, our data set lacks certain variables that might impact the overal cost of a metro rail project. 
