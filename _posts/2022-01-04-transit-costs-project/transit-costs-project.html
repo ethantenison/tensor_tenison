@@ -111,12 +111,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Transit Costs Project"]},{"type":"character","attributes":{},"value":["A short description of the post.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ethan Tenison"]},{"type":"character","attributes":{},"value":["https://twitter.com/ethantenison"]}]}]},{"type":"character","attributes":{},"value":["01-04-2022"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Transit Costs Project"]},{"type":"character","attributes":{},"value":["A short description of the post.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ethan Tenison"]},{"type":"character","attributes":{},"value":["https://twitter.com/ethantenison"]}]}]},{"type":"character","attributes":{},"value":["01-04-2022"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["transit-costs-project_files/anchor-4.2.2/anchor.min.js","transit-costs-project_files/bowser-1.9.3/bowser.min.js","transit-costs-project_files/distill-2.2.21/template.v2.js","transit-costs-project_files/figure-html5/check accuracy-1.png","transit-costs-project_files/figure-html5/correlation-1.png","transit-costs-project_files/figure-html5/evaluation-1.png","transit-costs-project_files/figure-html5/rf-1.png","transit-costs-project_files/figure-html5/total_cost-1.png","transit-costs-project_files/figure-html5/total_lines-1.png","transit-costs-project_files/figure-html5/vip-1.png","transit-costs-project_files/header-attrs-2.11/header-attrs.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.map","transit-costs-project_files/popper-2.6.0/popper.min.js","transit-costs-project_files/tippy-6.2.7/tippy-bundle.umd.min.js","transit-costs-project_files/tippy-6.2.7/tippy-light-border.css","transit-costs-project_files/tippy-6.2.7/tippy.css","transit-costs-project_files/tippy-6.2.7/tippy.umd.min.js","transit-costs-project_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["transit-costs-project_files/anchor-4.2.2/anchor.min.js","transit-costs-project_files/bowser-1.9.3/bowser.min.js","transit-costs-project_files/distill-2.2.21/template.v2.js","transit-costs-project_files/figure-html5/check accuracy-1.png","transit-costs-project_files/figure-html5/correlation-1.png","transit-costs-project_files/figure-html5/evaluation-1.png","transit-costs-project_files/figure-html5/plot_map-1.png","transit-costs-project_files/figure-html5/rf-1.png","transit-costs-project_files/figure-html5/total_cost-1.png","transit-costs-project_files/figure-html5/total_lines-1.png","transit-costs-project_files/figure-html5/vip-1.png","transit-costs-project_files/header-attrs-2.11/header-attrs.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.js","transit-costs-project_files/jquery-3.6.0/jquery-3.6.0.min.map","transit-costs-project_files/popper-2.6.0/popper.min.js","transit-costs-project_files/tippy-6.2.7/tippy-bundle.umd.min.js","transit-costs-project_files/tippy-6.2.7/tippy-light-border.css","transit-costs-project_files/tippy-6.2.7/tippy.css","transit-costs-project_files/tippy-6.2.7/tippy.umd.min.js","transit-costs-project_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1478,6 +1478,38 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#transit-costs-project">Transit Costs Project</a>
+<ul>
+<li><a href="#downloading-the-data">Downloading the data</a></li>
+<li><a href="#sneak-peak">Sneak Peak</a></li>
+</ul></li>
+<li><a href="#lets-map-it">Lets map it !</a>
+<ul>
+<li><a href="#geocoding-with-ggmap">Geocoding with ggmap</a></li>
+<li><a href="#plotting-projects-on-a-world-map">Plotting projects on a world map</a></li>
+</ul></li>
+<li><a href="#average-cost-per-country">Average cost per country</a></li>
+<li><a href="#total-lines-per-country">Total Lines per country</a></li>
+<li><a href="#what-is-causing-rail-to-be-so-expensive-in-the-us">What is causing rail to be so expensive in the US?</a></li>
+<li><a href="#linear-regression">Linear Regression</a></li>
+<li><a href="#prediction">Prediction</a>
+<ul>
+<li><a href="#data-splitting">Data splitting</a></li>
+<li><a href="#training">Training</a></li>
+<li><a href="#evaluating">Evaluating</a></li>
+</ul></li>
+<li><a href="#variable-importance">Variable Importance</a></li>
+<li><a href="#check-for-accuracy">Check for accuracy</a>
+<ul>
+<li><a href="#random-forest">Random Forest</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 <h1 id="transit-costs-project">Transit Costs Project</h1>
 <p>This data comes from the <a href="https://transitcosts.com/">Transit Costs Project</a> via <code>#tidytuesday</code> on Twitter.</p>
 <blockquote>
@@ -1489,6 +1521,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>One of the reason why I chose it was because the city I live in, Austin, approved a massive expansion of its rail transit-system. From the beginning of the planning process (a different version was defeat once before), it was highly controversial partly because of the cost. Given the congestion on Austin’s roads already, it doesn’t seem like the city has any other viable option to alleviate the problem.</p>
 <h3 id="downloading-the-data">Downloading the data</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/thebioengineer/tidytuesdayR'>tidytuesdayR</a></span><span class='op'>)</span><span class='co'># tidytuesday data package </span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>   <span class='co'># compendium of data lifecycle packages</span>
@@ -1498,11 +1534,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='va'>tuesdata</span> <span class='op'>&lt;-</span> <span class='fu'>tidytuesdayR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tidytuesdayR/man/tt_load.html'>tt_load</a></span><span class='op'>(</span><span class='fl'>2021</span>, week <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code>
     Downloading file 1 of 1: `transit_cost.csv`</code></pre>
 </div>
 <h3 id="sneak-peak">Sneak Peak</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>transit_cost</span> <span class='op'>&lt;-</span> <span class='va'>tuesdata</span><span class='op'>$</span><span class='va'>transit_cost</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>transit_cost</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <pre><code>Rows: 544
 Columns: 20
 $ e                &lt;dbl&gt; 7136, 7137, 7138, 7139, 7144, 7145, 7146, 7~
@@ -1527,25 +1574,255 @@ $ source2          &lt;chr&gt; &quot;Media&quot;, &quot;Media&quot;, &quot;Media
 $ reference        &lt;chr&gt; &quot;https://www.translink.ca/Plans-and-Project~</code></pre>
 </div>
 <p>The data set contains twenty variables including start and end date, track length, number of stations, whether it contains a tunnel, and cost recalculated using different measures.</p>
+<h1 id="lets-map-it">Lets map it !</h1>
+<h3 id="geocoding-with-ggmap">Geocoding with ggmap</h3>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/dkahle/ggmap'>ggmap</a></span><span class='op'>)</span>
+
+<span class='va'>map</span> <span class='op'>&lt;-</span> <span class='va'>transit_cost</span> |&gt; 
+  <span class='fu'>mutate</span><span class='op'>(</span>city_con <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>city</span>, <span class='st'>", "</span>, <span class='va'>country</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>city_con</span><span class='op'>)</span> |&gt; 
+  <span class='fu'>count</span><span class='op'>(</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://rdrr.io/pkg/ggmap/man/geocode.html'>mutate_geocode</a></span><span class='op'>(</span><span class='va'>city_con</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<h3 id="plotting-projects-on-a-world-map">Plotting projects on a world map</h3>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/AndySouth/rworldmap/'>rworldmap</a></span><span class='op'>)</span>
+
+<span class='va'>worldmap</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rworldmap/man/getMap.html'>getMap</a></span><span class='op'>(</span>resolution <span class='op'>=</span> <span class='st'>"coarse"</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>worldmap</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>120</span>, <span class='fl'>160</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>50</span>, <span class='fl'>100</span><span class='op'>)</span>, 
+     asp <span class='op'>=</span> <span class='fl'>1</span>, bg <span class='op'>=</span> <span class='st'>"lightblue"</span>, col <span class='op'>=</span> <span class='st'>"black"</span>, fill <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>map</span><span class='op'>$</span><span class='va'>lon</span>, <span class='va'>map</span><span class='op'>$</span><span class='va'>lat</span>, 
+       col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span>red <span class='op'>=</span> <span class='fl'>1</span>, green <span class='op'>=</span> <span class='fl'>0</span>, blue <span class='op'>=</span> <span class='fl'>0</span>, alpha <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>,
+       cex <span class='op'>=</span> <span class='va'>map</span><span class='op'>$</span><span class='va'>n</span><span class='op'>/</span><span class='fl'>10</span>,
+       pch <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="transit-costs-project_files/figure-html5/plot_map-1.png" width="624" /></p>
+</div>
 <h1 id="average-cost-per-country">Average cost per country</h1>
 <p>As mentioned below, the United States is by far the most expensive place to built transit systems. Hopefully we’ll be able to discover exactly why that is, but I have a feeling we’re missing some crucial variables.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>total</span> <span class='op'>&lt;-</span> <span class='va'>transit_cost</span> |&gt; 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>country</span><span class='op'>)</span> |&gt; 
+  <span class='fu'>summarize</span><span class='op'>(</span>average_cost <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>cost_km_millions</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>average_cost</span><span class='op'>)</span>,
+         <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>country</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'>mutate</span><span class='op'>(</span>us <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span>
+    <span class='va'>country</span> <span class='op'>==</span> <span class='st'>"US"</span> <span class='op'>~</span> <span class='st'>"1"</span>,
+    <span class='va'>country</span> <span class='op'>==</span> <span class='st'>"CN"</span> <span class='op'>~</span> <span class='st'>"1"</span>,
+    <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"0"</span>
+  <span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>theme_set</span><span class='op'>(</span><span class='fu'>theme_classic</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>total</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>country</span>, <span class='op'>-</span><span class='va'>average_cost</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='va'>average_cost</span>, fill <span class='op'>=</span> <span class='va'>us</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span> values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"1"</span><span class='op'>=</span><span class='st'>"red"</span>, <span class='st'>"0"</span><span class='op'>=</span><span class='st'>"darkgray"</span> <span class='op'>)</span>, guide <span class='op'>=</span> <span class='cn'>FALSE</span> <span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span> x <span class='op'>=</span> <span class='st'>"Country"</span>,
+        y <span class='op'>=</span> <span class='st'>"Average cost per km"</span>,
+        title <span class='op'>=</span> <span class='st'>"Average rail cost per km by country"</span>,
+        subtitle <span class='op'>=</span> <span class='st'>"(Millions $USD)"</span>, 
+        caption <span class='op'>=</span> <span class='st'>"Source: Transit Costs Project"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_curve</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>8.5</span>, y <span class='op'>=</span> <span class='fl'>1100</span>,
+             xend <span class='op'>=</span> <span class='fl'>2</span>, yend <span class='op'>=</span> <span class='fl'>1000</span>,
+             color <span class='op'>=</span> <span class='st'>"black"</span>,
+             curvature <span class='op'>=</span> <span class='fl'>0.2</span>,
+             size <span class='op'>=</span> <span class='fl'>1.5</span>,
+             arrow <span class='op'>=</span> <span class='fu'>arrow</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate</span><span class='op'>(</span>
+      <span class='st'>"text"</span>,
+      x <span class='op'>=</span> <span class='fl'>18</span>,
+      y <span class='op'>=</span> <span class='fl'>1000</span>,
+      label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"The United States pays the most\n in the world per kilometer of rail\n at $1211.46 million per kilometer"</span><span class='op'>)</span>,
+      size <span class='op'>=</span> <span class='fl'>3.5</span>
+   <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_curve</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>40</span>, y <span class='op'>=</span> <span class='fl'>350</span>,
+             xend <span class='op'>=</span> <span class='fl'>38</span>, yend <span class='op'>=</span> <span class='fl'>200</span>,
+             color <span class='op'>=</span> <span class='st'>"black"</span>,
+             curvature <span class='op'>=</span> <span class='fl'>0.2</span>,
+             size <span class='op'>=</span> <span class='fl'>1.5</span>,
+             arrow <span class='op'>=</span> <span class='fu'>arrow</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate</span><span class='op'>(</span>
+      <span class='st'>"text"</span>,
+      x <span class='op'>=</span> <span class='fl'>48</span>,
+      y <span class='op'>=</span> <span class='fl'>350</span>,
+      label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"China only spends on\n average $184.39 million"</span><span class='op'>)</span>,
+      size <span class='op'>=</span> <span class='fl'>3.5</span>
+   <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate</span><span class='op'>(</span><span class='st'>"text"</span>, 
+           x <span class='op'>=</span> <span class='fl'>1.2</span>,
+           y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>30</span>,
+           label <span class='op'>=</span> <span class='st'>"US"</span>, 
+           size <span class='op'>=</span> <span class='fl'>3.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate</span><span class='op'>(</span><span class='st'>"text"</span>, 
+           x <span class='op'>=</span> <span class='fl'>38</span>,
+           y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>30</span>,
+           label <span class='op'>=</span> <span class='st'>"CN"</span>, 
+           size <span class='op'>=</span> <span class='fl'>3.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>
+    axis.text.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    title <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
+    axis.ticks.x<span class='op'>=</span><span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    axis.line.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    axis.line.y <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="transit-costs-project_files/figure-html5/total_cost-1.png" width="624" /></p>
 </div>
 <h1 id="total-lines-per-country">Total Lines per country</h1>
 <p>Although I some transit lines are not accounted for in this data set, namely Austin’s red line, it is indisputable that China is the global leader in rail construction over the past 30 years. This partially because China started from an extremely low level of infrastructure and because of Chinese government intervention. Given that the Chinese construction and real estate industries are bordering on insolvency because of over investment, the same may be true for transit. That question we certainly can’t answer from this data set though!</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>total_lines</span> <span class='op'>&lt;-</span> <span class='va'>transit_cost</span> |&gt; 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>country</span><span class='op'>)</span> |&gt;
+  <span class='fu'>count</span><span class='op'>(</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>country</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'>mutate</span><span class='op'>(</span>us <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span>
+    <span class='va'>country</span> <span class='op'>==</span> <span class='st'>"CN"</span> <span class='op'>~</span> <span class='st'>"1"</span>,
+    <span class='va'>country</span> <span class='op'>==</span> <span class='st'>"US"</span> <span class='op'>~</span> <span class='st'>"1"</span>,
+    <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"0"</span>
+  <span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>total_lines</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>country</span>, <span class='op'>-</span><span class='va'>n</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='va'>n</span>, fill <span class='op'>=</span> <span class='va'>us</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span> values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"1"</span><span class='op'>=</span><span class='st'>"red"</span>, <span class='st'>"0"</span><span class='op'>=</span><span class='st'>"darkgray"</span> <span class='op'>)</span>, guide <span class='op'>=</span> <span class='cn'>FALSE</span> <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span> x <span class='op'>=</span> <span class='st'>"Countries"</span>,
+        y <span class='op'>=</span> <span class='st'>"Rail lines built"</span>,
+        title <span class='op'>=</span> <span class='st'>"Total rail lines built per country"</span>,
+        caption <span class='op'>=</span> <span class='st'>"Source: Transit Costs Project"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>
+    axis.text.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    title <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
+    axis.ticks.x<span class='op'>=</span><span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span> ,
+    axis.line.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    axis.line.y <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_curve</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>10</span>, y <span class='op'>=</span> <span class='fl'>175</span>,
+             xend <span class='op'>=</span> <span class='fl'>2</span>, yend <span class='op'>=</span> <span class='fl'>150</span>,
+             color <span class='op'>=</span> <span class='st'>"black"</span>,
+             curvature <span class='op'>=</span> <span class='fl'>0.2</span>,
+             size <span class='op'>=</span> <span class='fl'>1.5</span>,
+             arrow <span class='op'>=</span> <span class='fu'>arrow</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate</span><span class='op'>(</span>
+      <span class='st'>"text"</span>,
+      x <span class='op'>=</span> <span class='fl'>17</span>,
+      y <span class='op'>=</span> <span class='fl'>170</span>,
+      label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"By far, China built the\n most rail since 1990."</span><span class='op'>)</span>,
+      size <span class='op'>=</span> <span class='fl'>3.5</span>
+   <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate</span><span class='op'>(</span><span class='st'>"text"</span>, 
+           x <span class='op'>=</span> <span class='fl'>1.3</span>,
+           y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>8</span>,
+           label <span class='op'>=</span> <span class='st'>"CN"</span>, 
+           size <span class='op'>=</span> <span class='fl'>3.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate</span><span class='op'>(</span><span class='st'>"text"</span>, 
+           x <span class='op'>=</span> <span class='fl'>8</span>,
+           y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>8</span>,
+           label <span class='op'>=</span> <span class='st'>"US"</span>, 
+           size <span class='op'>=</span> <span class='fl'>3.5</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="transit-costs-project_files/figure-html5/total_lines-1.png" width="624" /></p>
 </div>
 <h1 id="what-is-causing-rail-to-be-so-expensive-in-the-us">What is causing rail to be so expensive in the US?</h1>
 <p>Let’s take a deeper look how the different variables are correlated with each other.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cor</span> <span class='op'>&lt;-</span> <span class='va'>transit_cost</span> |&gt;
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>end_year</span><span class='op'>)</span><span class='op'>)</span> |&gt; <span class='co'># this removes 71</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    end_year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>end_year</span><span class='op'>)</span>,
+    start_year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>start_year</span><span class='op'>)</span>,
+    real_cost <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>real_cost</span><span class='op'>)</span>,
+    total_years <span class='op'>=</span> <span class='va'>end_year</span> <span class='op'>-</span> <span class='va'>start_year</span>,
+    non_tunnel <span class='op'>=</span> <span class='va'>length</span> <span class='op'>-</span> <span class='va'>tunnel</span>
+  <span class='op'>)</span> |&gt;
+  <span class='fu'>select</span><span class='op'>(</span>
+    <span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+      <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,
+      <span class='va'>source1</span>,
+      <span class='va'>source2</span>,
+      <span class='va'>reference</span>,
+      <span class='va'>length</span>,
+      <span class='va'>tunnel_per</span>,
+      <span class='va'>cost</span>,
+      <span class='va'>currency</span>,
+      <span class='va'>ppp_rate</span>,
+      <span class='va'>cost_km_millions</span>, 
+      <span class='va'>start_year</span>,
+      <span class='va'>end_year</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>
+
+<span class='co'>#cor &lt;- na.omit(cor)</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/taiyun/corrplot'>corrplot</a></span><span class='op'>)</span>
+<span class='va'>Correlation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>cor</span>, use<span class='op'>=</span><span class='st'>"pairwise.complete.obs"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/corrplot/man/corrplot.html'>corrplot</a></span><span class='op'>(</span><span class='va'>Correlation</span>, order <span class='op'>=</span> <span class='st'>'hclust'</span>, addrect <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="transit-costs-project_files/figure-html5/correlation-1.png" width="624" /></p>
 </div>
 <p>We can glean from the matrix that both the number of stations and tunnel length were positively correlated with the real cost of the project. We can also see that whether a track is built on an existing railroad is positively correlated with length in years of the project.</p>
 <h1 id="linear-regression">Linear Regression</h1>
 <p>Unfortunately, with the current variables available, we can not make accurate predictions on cost per km, but with real cost as the dependent variable we get some good explanatory power.</p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidymodels.tidymodels.org'>tidymodels</a></span><span class='op'>)</span>
+
+<span class='co'># Specifying the model </span>
+<span class='va'>lm_spec</span> <span class='op'>&lt;-</span> <span class='fu'>linear_reg</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>set_mode</span><span class='op'>(</span><span class='st'>"regression"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>set_engine</span><span class='op'>(</span><span class='st'>"lm"</span><span class='op'>)</span>
+
+<span class='va'>lm_fit</span> <span class='op'>&lt;-</span> <span class='va'>lm_spec</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>fit</span><span class='op'>(</span><span class='va'>real_cost</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>cor</span><span class='op'>)</span>
+
+<span class='va'>lm_fit</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>pluck</span><span class='op'>(</span><span class='st'>"fit"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <pre><code>
 Call:
 stats::lm(formula = real_cost ~ ., data = data)
@@ -1575,10 +1852,45 @@ F-statistic: 167.4 on 6 and 431 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h1 id="prediction">Prediction</h1>
 <h3 id="data-splitting">Data splitting</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>27</span><span class='op'>)</span>
 
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='va'>cor</span><span class='op'>)</span>
+
+<span class='va'>data_split</span> <span class='op'>&lt;-</span> <span class='fu'>initial_split</span><span class='op'>(</span><span class='va'>df</span>, prop <span class='op'>=</span> <span class='fl'>3</span><span class='op'>/</span><span class='fl'>4</span><span class='op'>)</span>
+
+<span class='va'>train_data</span> <span class='op'>&lt;-</span> <span class='fu'>training</span><span class='op'>(</span><span class='va'>data_split</span><span class='op'>)</span>
+<span class='va'>test_data</span>  <span class='op'>&lt;-</span> <span class='fu'>testing</span><span class='op'>(</span><span class='va'>data_split</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <h3 id="training">Training</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Specifying the model </span>
+<span class='va'>lm_spec</span> <span class='op'>&lt;-</span> <span class='fu'>linear_reg</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>set_mode</span><span class='op'>(</span><span class='st'>"regression"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>set_engine</span><span class='op'>(</span><span class='st'>"lm"</span><span class='op'>)</span>
+
+<span class='co'>#Fitting </span>
+<span class='va'>lm_fit</span> <span class='op'>&lt;-</span> <span class='va'>lm_spec</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>fit</span><span class='op'>(</span><span class='va'>real_cost</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>train_data</span><span class='op'>)</span>
+
+<span class='co'>#Predicting</span>
+<span class='va'>pred</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>lm_fit</span>, new_data <span class='op'>=</span> <span class='va'>test_data</span><span class='op'>)</span>
+<span class='va'>pred</span>
+</code></pre>
+</div>
+</details>
 <pre><code># A tibble: 110 x 1
    .pred
    &lt;dbl&gt;
@@ -1596,31 +1908,105 @@ F-statistic: 167.4 on 6 and 431 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <h3 id="evaluating">Evaluating</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># plot all 4 plots in one plot</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>lm_fit</span><span class='op'>$</span><span class='va'>fit</span>,  <span class='co'># Select the fit object from the lm_fit list object </span>
+     pch <span class='op'>=</span> <span class='fl'>16</span>,    <span class='co'># optional parameters to make points blue</span>
+     col <span class='op'>=</span> <span class='st'>'#006EA1'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="transit-costs-project_files/figure-html5/evaluation-1.png" width="624" /></p>
 </div>
 <p>Based on the diagnostic tests, there seem to ve several points that are biasing our results. This affects the interpretability and predictive power of our model.</p>
 <h1 id="variable-importance">Variable Importance</h1>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/vip/man/vip.html'>vip</a></span><span class='op'>(</span><span class='va'>lm_fit</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="transit-costs-project_files/figure-html5/vip-1.png" width="624" /></p>
 </div>
 <p>The main take away from the variable importance plot is that the length of the track has a huge influence on the track (no brainer), and that tunnels have an even bigger impact (also a no brainer perhaps).</p>
 <h1 id="check-for-accuracy">Check for accuracy</h1>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test_results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>lm_fit</span>, new_data <span class='op'>=</span> <span class='va'>test_data</span><span class='op'>)</span> |&gt;
+  <span class='fu'>bind_cols</span><span class='op'>(</span><span class='va'>test_data</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>rmse</span><span class='op'>(</span><span class='va'>test_results</span>, truth <span class='op'>=</span> <span class='va'>real_cost</span>, estimate <span class='op'>=</span> <span class='va'>.pred</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <pre><code># A tibble: 1 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard       2673.</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>test_results</span>,
+       mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>.pred</span>, y <span class='op'>=</span> <span class='va'>real_cost</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'#006EA1'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_abline</span><span class='op'>(</span>intercept <span class='op'>=</span> <span class='fl'>0</span>, slope <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>'orange'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'Linear Regression Results - Test Set'</span>,
+       x <span class='op'>=</span> <span class='st'>'Predicted'</span>,
+       y <span class='op'>=</span> <span class='st'>'Real Cost'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="transit-costs-project_files/figure-html5/check%20accuracy-1.png" width="624" /></p>
 </div>
 <p>Mirroring the diagnostic tests, the model is better when not considering the outliers. Let’s try a different model to improve accuracy.</p>
 <h3 id="random-forest">Random Forest</h3>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rf_mod</span> <span class='op'>&lt;-</span> <span class='fu'>rand_forest</span><span class='op'>(</span>mode <span class='op'>=</span> <span class='st'>"regression"</span><span class='op'>)</span> |&gt; 
+  <span class='fu'>set_engine</span><span class='op'>(</span><span class='st'>"ranger"</span><span class='op'>)</span> 
+  
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>rf_mod</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <pre><code>Random Forest Model Specification (regression)
 
 Computational engine: ranger </code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rf_fit</span> <span class='op'>&lt;-</span> 
+  <span class='va'>rf_mod</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>fit</span><span class='op'>(</span><span class='va'>real_cost</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>train_data</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>rf_fit</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <pre><code>parsnip model object
 
-Fit time:  250ms 
+Fit time:  591ms 
 Ranger result
 
 Call:
@@ -1636,10 +2022,37 @@ Variable importance mode:         none
 Splitrule:                        variance 
 OOB prediction error (MSE):       10487881 
 R squared (OOB):                  0.5995448 </code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test_results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>rf_fit</span>, new_data <span class='op'>=</span> <span class='va'>test_data</span><span class='op'>)</span> |&gt;
+  <span class='fu'>bind_cols</span><span class='op'>(</span><span class='va'>test_data</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>rmse</span><span class='op'>(</span><span class='va'>test_results</span>, truth <span class='op'>=</span> <span class='va'>real_cost</span>, estimate <span class='op'>=</span> <span class='va'>.pred</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <pre><code># A tibble: 1 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard       2649.</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>test_results</span>,
+       mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>.pred</span>, y <span class='op'>=</span> <span class='va'>real_cost</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'#006EA1'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_abline</span><span class='op'>(</span>intercept <span class='op'>=</span> <span class='fl'>0</span>, slope <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>'orange'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'RF Regression Results - Test Set'</span>,
+       x <span class='op'>=</span> <span class='st'>'Predicted'</span>,
+       y <span class='op'>=</span> <span class='st'>'Real Cost'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="transit-costs-project_files/figure-html5/rf-1.png" width="624" /></p>
 </div>
 <p>Based on the results, both of them are particularly good. Accordingly, our data set lacks certain variables that might impact the overal cost of a metro rail project.</p>

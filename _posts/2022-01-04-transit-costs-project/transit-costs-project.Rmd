@@ -9,6 +9,9 @@ date: 01-04-2022
 output:
   distill::distill_article:
     self_contained: false
+    code_folding: yes
+    toc: yes
+    toc_float: yes
 ---
 
 # Transit Costs Project 
@@ -49,6 +52,40 @@ glimpse(transit_cost)
 ```
 
 The data set contains twenty variables including start and end date, track length, number of stations, whether it contains a tunnel, and cost recalculated using different measures. 
+
+# Lets map it !
+
+### Geocoding with ggmap
+
+```{r map}
+library(ggmap)
+
+map <- transit_cost |> 
+  mutate(city_con = paste0(city, ", ", country)) |> 
+  group_by(city_con) |> 
+  count() |> 
+  mutate_geocode(city_con)
+
+```
+
+### Plotting projects on a world map 
+
+```{r plot_map}
+library(rworldmap)
+
+worldmap <- getMap(resolution = "coarse")
+
+
+plot(worldmap, xlim = c(-120, 160), ylim = c(-50, 100), 
+     asp = 1, bg = "lightblue", col = "black", fill = T)
+
+points(map$lon, map$lat, 
+       col = rgb(red = 1, green = 0, blue = 0, alpha = 0.8),
+       cex = map$n/10,
+       pch = 20)
+
+```
+
 
 # Average cost per country
 
