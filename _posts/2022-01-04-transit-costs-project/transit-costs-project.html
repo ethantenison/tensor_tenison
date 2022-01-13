@@ -111,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Transit Costs Project"]},{"type":"character","attributes":{},"value":["A short description of the post.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ethan Tenison"]},{"type":"character","attributes":{},"value":["https://twitter.com/ethantenison"]}]}]},{"type":"character","attributes":{},"value":["01-04-2022"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","categories","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Transit Costs Project"]},{"type":"character","attributes":{},"value":["A short description of the post.\n"]},{"type":"character","attributes":{},"value":["GIS","Random Forest","Regression"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Ethan Tenison"]},{"type":"character","attributes":{},"value":["https://twitter.com/ethantenison"]}]}]},{"type":"character","attributes":{},"value":["01-04-2022"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1467,6 +1467,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-title">
 <h1>Transit Costs Project</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">GIS</div>
+<div class="dt=tag">Random Forest</div>
+<div class="dt=tag">Regression</div>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>A short description of the post.</p></p>
 </div>
@@ -1984,50 +1989,13 @@ Show code
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rf_mod</span> <span class='op'>&lt;-</span> <span class='fu'>rand_forest</span><span class='op'>(</span>mode <span class='op'>=</span> <span class='st'>"regression"</span><span class='op'>)</span> |&gt; 
   <span class='fu'>set_engine</span><span class='op'>(</span><span class='st'>"ranger"</span><span class='op'>)</span> 
   
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>rf_mod</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
-<pre><code>Random Forest Model Specification (regression)
 
-Computational engine: ranger </code></pre>
-<details>
-<summary>
-Show code
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rf_fit</span> <span class='op'>&lt;-</span> 
+<span class='va'>rf_fit</span> <span class='op'>&lt;-</span> 
   <span class='va'>rf_mod</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>fit</span><span class='op'>(</span><span class='va'>real_cost</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>train_data</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>rf_fit</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
-<pre><code>parsnip model object
 
-Fit time:  591ms 
-Ranger result
-
-Call:
- ranger::ranger(x = maybe_data_frame(x), y = y, num.threads = 1,      verbose = FALSE, seed = sample.int(10^5, 1)) 
-
-Type:                             Regression 
-Number of trees:                  500 
-Sample size:                      328 
-Number of independent variables:  6 
-Mtry:                             2 
-Target node size:                 5 
-Variable importance mode:         none 
-Splitrule:                        variance 
-OOB prediction error (MSE):       10487881 
-R squared (OOB):                  0.5995448 </code></pre>
-<details>
-<summary>
-Show code
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test_results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>rf_fit</span>, new_data <span class='op'>=</span> <span class='va'>test_data</span><span class='op'>)</span> |&gt;
+<span class='va'>test_results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>rf_fit</span>, new_data <span class='op'>=</span> <span class='va'>test_data</span><span class='op'>)</span> |&gt;
   <span class='fu'>bind_cols</span><span class='op'>(</span><span class='va'>test_data</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>rmse</span><span class='op'>(</span><span class='va'>test_results</span>, truth <span class='op'>=</span> <span class='va'>real_cost</span>, estimate <span class='op'>=</span> <span class='va'>.pred</span><span class='op'>)</span><span class='op'>)</span>
@@ -2055,8 +2023,8 @@ Show code
 </details>
 <p><img src="transit-costs-project_files/figure-html5/rf-1.png" width="624" /></p>
 </div>
-<p>Based on the results, both of them are particularly good. Accordingly, our data set lacks certain variables that might impact the overal cost of a metro rail project.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Based on the results, both of them are not particularly good. This may be because our data set lacks certain variables that might impact the overall cost of a metro rail project, such as the cost of permitting in a country or worker safety standards.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

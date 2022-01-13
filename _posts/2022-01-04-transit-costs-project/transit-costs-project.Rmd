@@ -2,6 +2,10 @@
 title: "Transit Costs Project"
 description: |
   A short description of the post.
+categories:
+  - GIS
+  - Random Forest 
+  - Regression
 author:
   - name: Ethan Tenison
     url: https://twitter.com/ethantenison
@@ -370,14 +374,10 @@ Mirroring the diagnostic tests, the model is better when not considering the out
 rf_mod <- rand_forest(mode = "regression") |> 
   set_engine("ranger") 
   
-print(rf_mod)
-
 
 rf_fit <- 
   rf_mod %>% 
   fit(real_cost ~ ., data = train_data)
-
-print(rf_fit)
 
 
 test_results <- predict(rf_fit, new_data = test_data) |>
@@ -394,4 +394,4 @@ ggplot(data = test_results,
        y = 'Real Cost')
 ```
 
-Based on the results, both of them are particularly good. Accordingly, our data set lacks certain variables that might impact the overal cost of a metro rail project. 
+Based on the results, both of them are not particularly good. This may be because our data set lacks certain variables that might impact the overall cost of a metro rail project, such as the cost of permitting in a country or worker safety standards.  
