@@ -1,5 +1,25 @@
 [
   {
+    "path": "posts/2022-01-29-austin-area-sustainability-indicators-shiny-dashboard/",
+    "title": "Employing Shiny Modules",
+    "description": "A deep dive into my recent Shiny Dashboard project with A2SI",
+    "author": [
+      {
+        "name": "Ethan Tenison",
+        "url": "https://twitter.com/ethantenison"
+      }
+    ],
+    "date": "2022-01-29",
+    "categories": [
+      "Shiny",
+      "Data Visualization"
+    ],
+    "contents": "\r\n\r\nContents\r\nBackground\r\n\r\nBackground\r\n\r\n\r\n\r\n\r\nA little background first, the Austin Area Sustainability Indicators project (A2SI), an initiative at the University of Texas at Austin, aims is to measure the quality of life, sustainability trends, and serve as the foundation to address challenges in Central Texas. Indicators describe context, identify trends, and translate data into points that are easier to communicate. These indicators span air quality, population demographics, health, mobility, economy, and the environment.\r\nCreating this dashboard was a collaborative effort between A2SI, the City of Austin Office of Sustainability, Dell Medical School, and the Capital Area Region of Governments. The main issue we were trying to solve was were to allocate resources to mitigate the effects of bad air quality, but to even start on that problem you need good air quality data! Which doesn’t exists. That’s where Microsoft comes in. They’re planning to place high quality air sensors throughout the city, and this app was developed to help with that decision making process.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-01-30T13:13:54-06:00",
+    "input_file": "austin-area-sustainability-indicators-shiny-dashboard.knit.md"
+  },
+  {
     "path": "posts/2022-01-04-transit-costs-project/",
     "title": "Transit Costs Project",
     "description": "A short description of the post.",

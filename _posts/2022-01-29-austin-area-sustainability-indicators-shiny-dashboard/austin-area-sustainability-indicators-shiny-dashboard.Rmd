@@ -1,7 +1,7 @@
 ---
-title: "Austin Area Sustainability Indicators - Shiny Dashboard"
+title: "Employing Shiny Modules"
 description: |
-  
+  A deep dive into my recent Shiny Dashboard project with A2SI
 categories:
   - Shiny
   - Data Visualization 
@@ -12,7 +12,7 @@ date: 01-29-2022
 output:
   distill::distill_article:
     self_contained: false
-    code_folding: yes
+    code_folding: no
     toc: yes
     toc_float: yes
 ---
@@ -20,17 +20,22 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(here)
 ```
 
-# About 
+# Background 
 
 <br>
 <font size="5">
+
+```{r, fig.align = 'center', out.width = '125%'} 
+knitr::include_graphics(here("_posts/2022-01-29-austin-area-sustainability-indicators-shiny-dashboard/AASI_logo_v1b-01.png"))  
+```
+
+
 A little background first, the [Austin Area Sustainability Indicators]("http://www.austinindicators.org/") project (A2SI), an initiative at the University of Texas at Austin, aims is to measure the quality of life, sustainability trends, and serve as the foundation to address challenges in Central Texas. Indicators describe context, identify trends, and translate data into points that are easier to communicate. These indicators span air quality, population demographics, health, mobility, economy, and the environment.
 
-Creating this dashboard was a collaborative effort between A2SI, the City of Austin Office of Sustainability, Dell Medical School, and the Capital Area Region of Governments. The main issue we were trying to solve was were to allocate resources to mitigate the effects of bad air quality, but to even start on that problem you need good air quality data! Which really doesn't exists. That's where Microsoft comes in. They're planning to place high quality air sensors throughout the city, and this app was developed help with that decision making process. 
-
-
+Creating this dashboard was a collaborative effort between A2SI, the City of Austin Office of Sustainability, Dell Medical School, and the Capital Area Region of Governments. The main issue we were trying to solve was were to allocate resources to mitigate the effects of bad air quality, but to even start on that problem you need good air quality data! Which doesn't exists. That's where Microsoft comes in. They're planning to place high quality air sensors throughout the city, and this app was developed to help with that decision making process. 
 
 
 
