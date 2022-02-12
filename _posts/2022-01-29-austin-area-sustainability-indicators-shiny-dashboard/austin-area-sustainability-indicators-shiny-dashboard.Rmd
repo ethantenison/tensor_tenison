@@ -25,7 +25,7 @@ library(here)
 
 <font size="5">
 
-```{r, fig.align = 'center', out.width = '125%'} 
+```{r, fig.align = 'center', out.width = '100%'} 
 knitr::include_graphics(here("_posts/2022-01-29-austin-area-sustainability-indicators-shiny-dashboard/AASI_logo_v1b-01.png"))  
 ```
 
@@ -40,4 +40,18 @@ Our long-range goal is to identify areas of the 10-county region that suffer fro
 The dashboard attempts to visualize as many relevant variables as possible to understand the phenomenon of poor air-quality. In order to make it more digestible, the variables are broken up into four main sections: air quality, environment, health, and social vulnerability. 
 
 
+
+```{r dashboard, fig.align = 'center', out.width = '100%'} 
+knitr::include_graphics(here("_posts/2022-01-29-austin-area-sustainability-indicators-shiny-dashboard/dashboard.png"))  
+```
+
+# Why use Shiny Modules? 
+
+This was a huge project! There were over 20 different variables to visualize, and putting them all in one place was confusing and overwhelming for users. The remedy for that was to separate the variables into categories and give each category it's own tab. This would have dramatically increased the lines of code of the app. It could have easily been over 2,000 lines of code, and making any changes would have been a tedious process with a high chance human error. Instead of rewriting the code for each tab, with Shiny modules you can use one script to reproduce different elements across the app. Any changes to shiny module script, automatically update any changes. Suffice to say, using the Shiny modules approach saved me so much time and frustration, and I feel more confident with my coding skills. 
+
+
+# How do Shiny Modules work? 
+
+
+#
 
