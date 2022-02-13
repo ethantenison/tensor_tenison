@@ -1,0 +1,45 @@
+---
+title: "Linear Algebra and Learning from Data (PART 1)"
+description: |
+  Self-study notes from Gilbert Strang's recent book
+author:
+  - name: Ethan Tenison
+    url: https://twitter.com/ethantenison
+date: 02-13-2022
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: yes
+    toc: yes
+    toc_float: yes
+---
+
+My route to becoming a data scientist has been unorthodox. I don't come from a math background, but I love to learn. Most of my journey into the field has been through self-study and completing independent projects. I started reading Gilbert Strang's recent book "Linear Algebra and Learning from Data" to increase my knowledge of the math used behind the scenes in machine learning algorithms. The book is dense, and since I'm training myself, I think the best way to solidify my learning is through writing up some blog posts in `Python` and `R`! 
+
+Right now most of my work in machine learning is in Python, but R still has some of the best reporting tools, so I'm going to blend them both using the `reticulate` package.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(reticulate)
+
+use_virtualenv("C:/Users/tenis/.virtualenvs/sunthetics_dash/")
+
+```
+
+# Highlights of Linear Algebra
+
+The foundation for Linear Algebra is the equation $Ax=b$, where $A$ is a matrix, $x$ is a vector, and $b$ is the product of their matrix multiplication 
+
+```{python}
+import numpy as np
+
+#creating a random matrix
+A = np.random.randint(0,10,(3,2))
+print(f"Matrix A\n", A)
+
+x = np.random.randint(0,10,(2,1))
+print(F"Vector x\n", x)
+
+
+```
+

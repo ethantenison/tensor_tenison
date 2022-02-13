@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-02-13-linear-algebra-and-learning-from-data-part-1/",
+    "title": "Linear Algebra and Learning from Data (PART 1)",
+    "description": "Self-study notes from Gilbert Strang's recent book",
+    "author": [
+      {
+        "name": "Ethan Tenison",
+        "url": "https://twitter.com/ethantenison"
+      }
+    ],
+    "date": "2022-02-13",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nHighlights of Linear Algebra\r\n\r\nMy route to becoming a data scientist has been unorthodox. I don’t come from a math background, but I love to learn. Most of my journey into the field has been through self-study and completing independent projects. I started reading Gilbert Strang’s recent book “Linear Algebra and Learning from Data” to increase my knowledge of the math used behind the scenes in machine learning algorithms. The book is dense, and since I’m training myself, I think the best way to solidify my learning is through writing up some blog posts in Python and R!\r\nRight now most of my work in machine learning is in Python, but R still has some of the best reporting tools, so I’m going to blend them both using the reticulate package.\r\nHighlights of Linear Algebra\r\nThe foundation for Linear Algebra is the equation \\(Ax=b\\), where \\(A\\) is a matrix, \\(x\\) is a vector, and \\(b\\) is the product of their matrix multiplication\r\n\r\n\r\nShow code\r\nimport numpy as np\r\n\r\n#creating a random matrix\r\nA = np.random.randint(0,10,(3,2))\r\nprint(\"Matrix A\")\r\nMatrix A\r\n\r\nShow code\r\nprint(A)\r\n[[1 7]\r\n [3 0]\r\n [0 2]]\r\n\r\nShow code\r\nprint(\"\")\r\n\r\nShow code\r\nx = np.random.randint(0,10,(2,1))\r\nprint(\"Vector x\")\r\nVector x\r\n\r\nShow code\r\nprint(x)\r\n[[5]\r\n [2]]\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-02-13T14:14:48-06:00",
+    "input_file": "linear-algebra-and-learning-from-data-part-1.knit.md"
+  },
+  {
     "path": "posts/2022-01-29-austin-area-sustainability-indicators-shiny-dashboard/",
     "title": "Employing Shiny Modules",
     "description": "A deep dive into my recent Shiny Dashboard project with A2SI",
