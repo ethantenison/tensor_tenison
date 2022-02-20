@@ -1482,14 +1482,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#highlights-of-linear-algebra">Highlights of Linear Algebra</a></li>
+<li><a href="#highlights-of-linear-algebra">Highlights of Linear Algebra</a>
+<ul>
+<li><a href="#finding-the-basis">Finding the basis</a></li>
+<li><a href="#eigenvectors-and-eigenvalues">Eigenvectors and eigenvalues</a></li>
+<li><a href="#singular-vectors-and-singular-values">Singular Vectors and Singular Values</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
 <p>My route to becoming a data scientist has been unorthodox. I don’t come from a math background, but I love to learn. Most of my journey into the field has been through self-study and completing independent projects. I started reading Gilbert Strang’s recent book “Linear Algebra and Learning from Data” to increase my knowledge of the math used behind the scenes in machine learning algorithms. The book is dense, and since I’m training myself, I think the best way to solidify my learning is through writing up some blog posts in <code>Python</code> and <code>R</code>!</p>
 <p>Right now most of my work in machine learning is in Python, but R still has some of the best reporting tools, so I’m going to blend them both using the <code>reticulate</code> package.</p>
 <h1 id="highlights-of-linear-algebra">Highlights of Linear Algebra</h1>
-<p>The foundation for Linear Algebra is the equation <span class="math inline">\(Ax=b\)</span>, where <span class="math inline">\(A\)</span> is a matrix, <span class="math inline">\(x\)</span> is a vector, and <span class="math inline">\(b\)</span> is the product of their matrix multiplication</p>
+<p>The foundation for Linear Algebra is the equation <span class="math inline">\(Ax=b\)</span>, where <span class="math inline">\(A\)</span> is a matrix, <span class="math inline">\(x\)</span> is a vector, and <span class="math inline">\(b\)</span> is the inner product, or dot product, of their matrix multiplication. Just for reference, inner products produce a scalar, and outer products produce a matrix. Many of the methods to reduce matrix dimensionality, such as SVD, are derivations of this formula.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
@@ -1497,44 +1502,109 @@ Show code
 </summary>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a random matrix</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">10</span>,(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Matrix A&quot;</span>)</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">27</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a random matrix</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">10</span>,(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Matrix A</span><span class="ch">\n</span><span class="ss">&quot;</span>, A)</span></code></pre></div>
 </details>
-<pre><code>Matrix A</code></pre>
+<pre><code>Matrix A
+ [[3 8]
+ [8 8]
+ [0 5]]</code></pre>
 <details>
 <summary>
 Show code
 </summary>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">10</span>,(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">F&quot;Vector x</span><span class="ch">\n</span><span class="ss">&quot;</span>, x)</span></code></pre></div>
 </details>
-<pre><code>[[1 7]
- [3 0]
- [0 2]]</code></pre>
+<pre><code>Vector x
+ [[8]
+ [9]]</code></pre>
 <details>
 <summary>
 Show code
 </summary>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.dot(A, x)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">F&quot;Vector b is the dot product of the x and A</span><span class="ch">\n</span><span class="ss">&quot;</span>, b)</span></code></pre></div>
 </details>
-<details>
-<summary>
-Show code
-</summary>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">10</span>,(<span class="dv">2</span>,<span class="dv">1</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Vector x&quot;</span>)</span></code></pre></div>
-</details>
-<pre><code>Vector x</code></pre>
-<details>
-<summary>
-Show code
-</summary>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div>
-</details>
-<pre><code>[[5]
- [2]]</code></pre>
+<pre><code>Vector b is the dot product of the x and A
+ [[ 96]
+ [136]
+ [ 45]]</code></pre>
 </div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="finding-the-basis">Finding the basis</h3>
+<p>One of the first things you learn about in linear algebra is about finding the basis elements. The basis of subspace is the set of independent vectors that can be combined to formulate the others. For example, in the case below, Row 3 is a combination of rows 1 and 2. To find the independent rows, or the rank, we can find the eigenvalues of the matrix. Eigenvalues that equal to zero translates to linear dependence.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> np.array(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        [<span class="dv">0</span>, <span class="dv">1</span> ,<span class="dv">0</span> ,<span class="dv">0</span>],</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>],</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>],</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>lambdas, V <span class="op">=</span>  np.linalg.eig(matrix.T)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The linearly dependent row vectors </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;Linearly dependent rows&#39;</span>,matrix[lambdas <span class="op">==</span> <span class="dv">0</span>,:])</span></code></pre></div>
+</details>
+<pre><code>Linearly dependent rows [[0 1 1 0]]</code></pre>
+</div>
+<h3 id="eigenvectors-and-eigenvalues">Eigenvectors and eigenvalues</h3>
+<p>Linear algebra helps us compress data. Eigenvectors and eigenvalues are what make this possible. <span class="math inline">\(Ax=\lambda x\)</span>, where <span class="math inline">\(A\)</span> is a matrix, <span class="math inline">\(x\)</span> is the eigenvector, and <span class="math inline">\(\lambda\)</span> is the eigenvalue. Eigenvectors do not change when a transformation is applied to them, and the eigenvalue is the amount in which the orginal eigenvector is scaled to get matrix <span class="math inline">\(A\)</span>. Generally speaking, you want Matrix <span class="math inline">\(A\)</span> to be a square matrix (m x m).</p>
+<p><br/> Let’s test it out!</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.linalg <span class="im">as</span> la</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="op">-</span><span class="dv">2</span>]])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Square Matrix A</span><span class="ch">\n</span><span class="ss">&quot;</span>, A)</span></code></pre></div>
+</details>
+<pre><code>Square Matrix A
+ [[ 1  0]
+ [ 0 -2]]</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>eigvals, eigvecs <span class="op">=</span> la.eig(A)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>eigvals <span class="op">=</span> eigvals.real</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Eigenvalues x </span><span class="ch">\n</span><span class="ss">&quot;</span>, eigvals)</span></code></pre></div>
+</details>
+<pre><code>Eigenvalues x 
+ [ 1. -2.]</code></pre>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Eigenvectors lambda </span><span class="ch">\n</span><span class="ss">&quot;</span>, eigvecs)</span></code></pre></div>
+</details>
+<pre><code>Eigenvectors lambda 
+ [[1. 0.]
+ [0. 1.]]</code></pre>
+</div>
+<h3 id="singular-vectors-and-singular-values">Singular Vectors and Singular Values</h3>
+<p>Singular vectors are similar to eigenvectors, in that they both describe the behavior of matrix. While eigenvectors describe the direction of a matrice’s invariant<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> action, singular vectors describe the direction of its maximum action. Since singular vectors describe the direction of maximum impact of a matrix, this becomes extremely important for dimension reduction.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><strong>Invariant</strong> signifies that something is unchanging. For example, counting is an invariant action because no matter where you stop the next value is always the same<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
