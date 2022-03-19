@@ -30,23 +30,41 @@ use_virtualenv("C:/Users/tenis/.virtualenvs/sunthetics_dash/")
 
 The foundation for Linear Algebra is the equation $Ax=b$, where $A$ is a matrix, $x$ is a vector, and $b$ is the inner product, or dot product, of their matrix multiplication. Just for reference, inner products produce a scalar, and outer products produce a matrix. Many of the methods to reduce matrix dimensionality, such as SVD, are derivations of this formula. 
 
-```{python}
-import numpy as np
+First, let's create a matrix, of which I will visualize using matplotlib. Higher values equal lighter colors
 
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
 np.random.seed(27)
 
-#creating a random matrix
-A = np.random.randint(0,10,(3,2))
-print(f"Matrix A\n", A)
+A = np.random.randint(1,27, size = (4,4))
+print("Square Matrix A\n", A)
 
-x = np.random.randint(0,10,(2,1))
-print(F"Vector x\n", x)
+plt.imshow(A)
+plt.show()
 
-b = np.dot(A, x)
-print(F"Vector b is the dot product of the x and A\n", b)
+```
+
+### Eigenvectors and eigenvalues
+
+Linear algebra helps us compress data. Eigenvectors and eigenvalues are what make this possible. $Ax=\lambda x$, where $A$ is a matrix, $x$ is the eigenvector, and $\lambda$ is the eigenvalue, which is a scalar. Eigenvectors do not change when a transformation is applied to them, and the eigenvalue is the amount in which the orginal eigenvector is scaled to get matrix $A$. Generally speaking, you want Matrix $A$ to be a square matrix (m x m). In the example below only one scalar eigenvalue is shown, but in reality there could be an infinite amount of eigenvalues. 
+
+<br/>
+
+```{python}
+import scipy.linalg as la
+
+eigvals, eigvecs = la.eig(A)
+eigvals = eigvals.real
+eigvecs = eigvecs.real
+
+print(f"Eigenvalue x \n", eigvals)
+
+print(f"Eigenvectors lambda \n", eigvecs)
 
 
 ```
+
 
 ### Finding the basis 
 
@@ -71,29 +89,6 @@ print(f'Linearly dependent rows',matrix[lambdas == 0,:])
 
 ```
 
-### Eigenvectors and eigenvalues
-
-Linear algebra helps us compress data. Eigenvectors and eigenvalues are what make this possible. $Ax=\lambda x$, where $A$ is a matrix, $x$ is the eigenvector, and $\lambda$ is the eigenvalue. Eigenvectors do not change when a transformation is applied to them, and the eigenvalue is the amount in which the orginal eigenvector is scaled to get matrix $A$. Generally speaking, you want Matrix $A$ to be a square matrix (m x m).  
-
-<br/>
-Let's test it out! 
-
-```{python}
-import scipy.linalg as la
-
-A = np.array([[1,0],[0,-2]])
-print(f"Square Matrix A\n", A)
-
-eigvals, eigvecs = la.eig(A)
-eigvals = eigvals.real
-
-print(f"Eigenvalues x \n", eigvals)
-
-
-print(f"Eigenvectors lambda \n", eigvecs)
-
-
-```
 
 ### Singular Vectors and Singular Values
 
