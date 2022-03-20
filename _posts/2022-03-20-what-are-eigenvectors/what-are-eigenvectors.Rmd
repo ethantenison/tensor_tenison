@@ -1,0 +1,76 @@
+---
+title: "What are Eigenvectors?"
+description: |
+  A short description of the post.
+author:
+  - name: Ethan Tenison
+    url: https://twitter.com/ethantenison
+date: 03-20-2022
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: yes
+    toc: yes
+    toc_float: yes
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(patchwork)
+```
+
+
+
+Eigenvectors and Eigenvalues are important components of machine learning and statistics. Well known examples include PCA (Principal Component Analysis) and eigendecomposition, which allow us to take large matrices and reduce then to simple component that can speed up computation.  
+
+An `eigenvector` is a vector whose direction remains unchanged when a linear transformation is applied to it. 
+
+
+```{r example}
+
+#Creating a data frame of initial vectors 
+vector <- c("A", "B", "C")
+startx <- c(1, 1, 1)
+starty <- c(1,1,1)
+endx <- c(2, 1, 5)
+endy <- c(1, 2, 5)
+df <- data.frame(vector, startx, starty, endx, endy)
+
+theme_set(theme_classic())
+a <- ggplot(data = df) +
+  geom_rect(aes(xmin = 2, xmax = 4, ymin = 2, ymax=4), fill="grey", color = "black", size = 1.5) +
+  geom_segment(aes(x=2, y=2, xend = 3, yend = 2),
+               size = 1.5, color = "red",
+               arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_segment(aes(x=2, y=2, xend = 2, yend = 3),
+               size = 1.5, color = "red",
+               arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_segment(aes(x=2, y=2, xend = 4, yend = 4),
+               size = 1.5, color = "yellow",
+               arrow = arrow(length = unit(0.5, "cm"))) +
+  xlim(1,6) + 
+  ylim(1,4)
+
+
+b <- ggplot(data = df) +
+  geom_rect(aes(xmin = 2, xmax = 6, ymin = 2, ymax=3), fill="grey", color = "black", size = 1.5) +
+  geom_segment(aes(x=2, y=2, xend = 3, yend = 2),
+               size = 1.5, color = "red",
+               arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_segment(aes(x=2, y=2, xend = 2, yend = 2.5),
+               size = 1.5, color = "red",
+               arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_segment(aes(x=2, y=2, xend = 6, yend = 3),
+               size = 1.5, color = "yellow",
+               arrow = arrow(length = unit(0.5, "cm"))) +
+  xlim(1,6) + 
+  ylim(1,4)
+
+c <- a + b + plot_annotation(title = "The eigenvector (red) stay the same direction even after transformation")
+c
+
+```
+

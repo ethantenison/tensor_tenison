@@ -30,7 +30,7 @@ use_virtualenv("C:/Users/tenis/.virtualenvs/sunthetics_dash/")
 
 The foundation for Linear Algebra is the equation $Ax=b$, where $A$ is a matrix, $x$ is a vector, and $b$ is the inner product, or dot product, of their matrix multiplication. Just for reference, inner products produce a scalar, and outer products produce a matrix. Many of the methods to reduce matrix dimensionality, such as SVD, are derivations of this formula. 
 
-First, let's create a matrix, of which I will visualize using matplotlib. Higher values equal lighter colors
+First, let's create a matrix.
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -40,10 +40,9 @@ np.random.seed(27)
 A = np.random.randint(1,27, size = (4,4))
 print("Square Matrix A\n", A)
 
-plt.imshow(A)
-plt.show()
-
 ```
+
+
 
 ### Eigenvectors and eigenvalues
 
